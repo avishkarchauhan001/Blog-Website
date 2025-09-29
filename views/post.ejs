@@ -1,0 +1,34 @@
+<%- include('partials/header', { title: post.title }) %>
+
+<article class="single-post">
+    <header class="post-header">
+        <div class="post-meta">
+            <time datetime="<%= post.dateCreated.toISOString() %>">
+                <%= post.dateCreated.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }) %>
+            </time>
+        </div>
+        <h1 class="post-title"><%= post.title %></h1>
+    </header>
+    
+    <div class="post-content">
+        <%- post.content.replace(/\\n/g, '</p><p>').replace(/^(.*)$/, '<p>$1</p>') %>
+    </div>
+    
+    <footer class="post-footer">
+        <div class="post-actions">
+            <a href="/posts/<%= post.id %>/edit" class="btn btn--secondary">Edit Post</a>
+            <form class="delete-form" action="/posts/<%= post.id %>?_method=DELETE" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn--danger" onclick="return confirm('Are you sure you want to delete this post? This action cannot be undone.')">Delete Post</button>
+            </form>
+            <a href="/" class="btn btn--outline">← Back to Home</a>
+        </div>
+    </footer>
+</article>
+
+<%- include('partials/footer') %>

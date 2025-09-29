@@ -1,0 +1,27 @@
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <%= new Date().getFullYear() %> My Blog. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleNav() {
+            const navList = document.querySelector('.nav-list');
+            const navToggle = document.querySelector('.nav-toggle');
+            navList.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        }
+        
+        // Auto-resize textareas
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = this.scrollHeight + 'px';
+            });
+        });
+    </script>
+</body>
+</html>

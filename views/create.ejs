@@ -1,0 +1,46 @@
+<%- include('partials/header', { title: 'Create New Post', page: 'create' }) %>
+
+<div class="page-header">
+    <h2>Create New Post</h2>
+    <p class="page-subtitle">Share your thoughts with the world</p>
+</div>
+
+<% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert--error">
+        <%= error %>
+    </div>
+<% } %>
+
+<form class="form" action="/posts" method="POST">
+    <div class="form-group">
+        <label for="title" class="form-label">Post Title</label>
+        <input 
+            type="text" 
+            id="title" 
+            name="title" 
+            class="form-input" 
+            placeholder="Enter your post title..."
+            value="<%= typeof title !== 'undefined' ? title : '' %>"
+            required
+        >
+    </div>
+    
+    <div class="form-group">
+        <label for="content" class="form-label">Post Content</label>
+        <textarea 
+            id="content" 
+            name="content" 
+            class="form-textarea" 
+            placeholder="Write your post content here..."
+            rows="10"
+            required
+        ><%= typeof content !== 'undefined' ? content : '' %></textarea>
+    </div>
+    
+    <div class="form-actions">
+        <button type="submit" class="btn btn--primary">Create Post</button>
+        <a href="/" class="btn btn--secondary">Cancel</a>
+    </div>
+</form>
+
+<%- include('partials/footer') %>

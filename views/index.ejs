@@ -1,0 +1,43 @@
+<%- include('partials/header', { title: 'Home', page: 'home' }) %>
+
+<div class="page-header">
+    <h2>Articles</h2>
+    <p class="page-subtitle">Thoughts, ideas, and insights</p>
+</div>
+
+<% if (posts && posts.length > 0) { %>
+    <div class="posts-container">
+        <% posts.forEach(function(post) { %>
+            <article class="post-card">
+                <div class="post-meta">
+                    <time datetime="<%= post.dateCreated.toISOString() %>">
+                        <%= post.dateCreated.toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        }) %>
+                    </time>
+                </div>
+                <h3 class="post-title">
+                    <a href="/posts/<%= post.id %>"><%= post.title %></a>
+                </h3>
+                <p class="post-excerpt"><%= post.excerpt %></p>
+                <div class="post-actions">
+                    <a href="/posts/<%= post.id %>" class="btn btn--outline btn--sm">Read More</a>
+                    <a href="/posts/<%= post.id %>/edit" class="btn btn--secondary btn--sm">Edit</a>
+                    <form class="delete-form" action="/posts/<%= post.id %>?_method=DELETE" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn--danger btn--sm" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                    </form>
+                </div>
+            </article>
+        <% }); %>
+    </div>
+<% } else { %>
+    <div class="empty-state">
+        <h3>No posts yet</h3>
+        <p>Start by creating your first blog post.</p>
+        <a href="/create" class="btn btn--primary">Create Your First Post</a>
+    </div>
+<% } %>
+
+<%- include('partials/footer') %>

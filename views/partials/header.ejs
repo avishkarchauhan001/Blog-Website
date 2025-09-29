@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title !== 'undefined' ? title + ' - ' : '' %>My Blog</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="/">My Blog</a>
+                </h1>
+                <nav class="nav">
+                    <!-- Mobile menu toggle -->
+                    <button class="nav-toggle" onclick="toggleNav()">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                    <ul class="nav-list">
+                        <li><a href="/" class="<%= typeof page !== 'undefined' && page === 'home' ? 'active' : '' %>">Home</a></li>
+                        <li><a href="/create" class="<%= typeof page !== 'undefined' && page === 'create' ? 'active' : '' %>">Create Post</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main">
+        <div class="container">
